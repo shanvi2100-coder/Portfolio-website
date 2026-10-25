@@ -1,0 +1,12 @@
+# Unused or external video files exceeding GitHub 100MB limit
+35.mp4
+37.mp4
+vidssave.com Bill Ackman*.mp4
+*.compressed.mp4
+*.bak
+
+# Development scripts
+serve.py
+restore_and_update.py
+__pycache__/
+*.pyc
