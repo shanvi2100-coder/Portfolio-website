@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Caveat:wght@400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=66.0">
+  <link rel="stylesheet" href="css/style.css?v=67.0">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
   <style>
     /* Critical Hero Photo Visibility & Responsive Alignment */
@@ -38,6 +38,7 @@
         align-items: flex-start !important;
         justify-content: flex-end !important;
         margin-top: 0 !important;
+        position: static !important;
       }
       .hero-photo-card {
         max-width: 480px !important;
@@ -50,32 +51,104 @@
       }
     }
 
-    /* Mobile View (<= 900px): Clean Centered Full-Width Card */
+    /* Mobile View (<= 900px): Circular Photo at Top Right Corner (Desktop Untouched) */
     @media (max-width: 900px) {
+      .hero-section {
+        padding-top: 1.25rem !important;
+      }
+
       .hero-grid {
-        grid-template-columns: 1fr !important;
-        gap: 2rem !important;
+        position: relative !important;
+        display: block !important;
         width: 100% !important;
       }
+
       .hero-content {
         width: 100% !important;
+        position: relative !important;
       }
-      .hero-media {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 100% !important;
-        margin-top: 1rem !important;
+
+      /* Keep title and badges from overlapping with top-right circular photo */
+      .hero-content .status-badge,
+      .hero-content .hero-title,
+      .hero-content .hero-role-wrap {
+        max-width: calc(100% - clamp(96px, 26vw, 122px)) !important;
       }
-      .hero-photo-card {
+
+      .hero-title {
+        font-size: clamp(1.85rem, 6.8vw, 2.45rem) !important;
+        line-height: 1.15 !important;
+        margin-bottom: 0.85rem !important;
+        word-break: break-word !important;
+      }
+
+      .hero-role-wrap {
+        margin-bottom: 1.25rem !important;
+      }
+
+      .hero-bio {
         max-width: 100% !important;
-        width: 100% !important;
-        margin: 0 auto !important;
+        margin-bottom: 1.6rem !important;
+        clear: both !important;
       }
-      .hero-photo-inner {
-        min-height: 340px !important;
-        max-height: 480px !important;
+
+      /* Position Photo in Top Right Corner in a Clean Circle */
+      .hero-media {
+        position: absolute !important;
+        top: 0 !important;
+        right: 0 !important;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: flex-end !important;
+        z-index: 10 !important;
+      }
+
+      .hero-photo-card {
+        width: clamp(88px, 24vw, 112px) !important;
+        height: clamp(88px, 24vw, 112px) !important;
+        max-width: unset !important;
+        min-width: unset !important;
+        border-radius: 50% !important;
+        aspect-ratio: 1 / 1 !important;
+        overflow: hidden !important;
+        border: 3.5px solid #FFFFFF !important;
+        box-shadow: 0 10px 26px rgba(14, 22, 38, 0.16), 0 2px 8px rgba(37, 99, 235, 0.14) !important;
+        margin: 0 !important;
+        padding: 0 !important;
         background: #EDE2D3 !important;
+        transform: none !important;
+      }
+
+      .hero-photo-inner {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: unset !important;
+        max-height: unset !important;
+        border-radius: 50% !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .hero-photo-img {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        object-position: center 25% !important;
+        display: block !important;
+      }
+
+      .hero-photo-badge,
+      .hero-photo-glow {
+        display: none !important;
       }
     }
   </style>
