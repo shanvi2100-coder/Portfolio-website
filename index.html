@@ -8,30 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Caveat:wght@400..700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=64.0">
+  <link rel="stylesheet" href="css/style.css?v=66.0">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
   <style>
-    /* Critical Hero Photo Visibility & Top-Alignment */
-    .hero-grid {
-      align-items: start !important;
-    }
-    .hero-media {
-      display: flex !important;
-      align-items: flex-start !important;
-      justify-content: flex-end !important;
-      margin-top: 0 !important;
-    }
+    /* Critical Hero Photo Visibility & Responsive Alignment */
     .hero-photo-card {
       opacity: 1 !important;
       display: block !important;
       visibility: visible !important;
-      max-width: 480px !important;
-      margin-top: 0 !important;
-    }
-    .hero-photo-inner {
-      min-height: 480px !important;
-      max-height: 580px !important;
-      background: #EDE2D3 !important;
     }
     .hero-photo-img {
       display: block !important;
@@ -43,7 +27,132 @@
     .about-portrait-img {
       object-position: center 15% !important;
     }
+
+    /* Desktop View (>= 901px): 2-Column with Top-Aligned Right Card (Completely Untouched) */
+    @media (min-width: 901px) {
+      .hero-grid {
+        align-items: start !important;
+      }
+      .hero-media {
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: flex-end !important;
+        margin-top: 0 !important;
+      }
+      .hero-photo-card {
+        max-width: 480px !important;
+        margin-top: 0 !important;
+      }
+      .hero-photo-inner {
+        min-height: 480px !important;
+        max-height: 580px !important;
+        background: #EDE2D3 !important;
+      }
+    }
+
+    /* Mobile View (<= 900px): Clean Centered Full-Width Card */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        width: 100% !important;
+      }
+      .hero-content {
+        width: 100% !important;
+      }
+      .hero-media {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin-top: 1rem !important;
+      }
+      .hero-photo-card {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+      }
+      .hero-photo-inner {
+        min-height: 340px !important;
+        max-height: 480px !important;
+        background: #EDE2D3 !important;
+      }
+    }
   </style>
+
+
+<style id="mobile-tworow-css">
+/* Mobile (<= 900px): Two video cards per row strictly for mobile; Desktop remains untouched */
+@media (max-width: 900px) {
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem 0.65rem !important;
+  }
+  .project-card {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .project-card-title {
+    font-size: 0.88rem !important;
+    line-height: 1.25 !important;
+    margin-top: 0.45rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+  }
+  .project-media-wrap {
+    border-radius: 8px !important;
+  }
+  .video-play-center-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .video-play-center-btn svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .short-form-trio-grid {
+    padding: 2px !important;
+    gap: 3px !important;
+  }
+  .short-phone-frame {
+    border-radius: 5px !important;
+    border-width: 1px !important;
+  }
+  .short-reel-badge,
+  .real-state-badge,
+  .format-pill {
+    font-size: 0.45rem !important;
+    padding: 0.1rem 0.25rem !important;
+  }
+  .dual-col-top-badge,
+  .format-badge-wrap {
+    top: 4px !important;
+    left: 4px !important;
+  }
+  .dual-play-text,
+  .format-play-label {
+    display: none !important;
+  }
+  .dual-play-btn-circle,
+  .format-play-circle {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .dual-play-btn-circle svg,
+  .format-play-circle svg {
+    width: 9px !important;
+    height: 9px !important;
+  }
+  .dual-video-divider {
+    width: 12px !important;
+  }
+  .dual-divider-tag {
+    font-size: 0.36rem !important;
+    padding: 1px 2px !important;
+  }
+}
+</style>
+
 </head>
 <body>
 

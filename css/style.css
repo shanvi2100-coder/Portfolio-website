@@ -97,6 +97,15 @@ html {
   font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 /* Custom Vibrant Blue Scrollbar & Text Selection */
@@ -1086,8 +1095,8 @@ a {
 
 @media (max-width: 640px) {
   .work-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem 0.65rem !important;
   }
 }
 
@@ -3163,7 +3172,8 @@ a {
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
   z-index: 3000 !important;
-  display: flex !important;
+  display: none !important;
+  visibility: hidden !important;
   align-items: center !important;
   justify-content: center !important;
   padding: clamp(0.75rem, 2.5vw, 2rem) !important;
@@ -3174,6 +3184,8 @@ a {
 
 .modal-backdrop#deskModal.active,
 .modal-backdrop#channelProofModal.active {
+  display: flex !important;
+  visibility: visible !important;
   opacity: 1 !important;
   pointer-events: auto !important;
 }
@@ -3255,6 +3267,7 @@ a {
   padding-right: 4.5rem !important; /* Space for close button */
   background: #0E1626 !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  max-width: 100% !important;
   overflow-x: auto !important;
   scrollbar-width: none !important;
   flex-shrink: 0 !important;
@@ -4648,7 +4661,8 @@ a {
 .footer-social-links {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
 }
 
 .social-link {
@@ -4671,18 +4685,21 @@ a {
   background: rgba(15, 23, 42, 0.7);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  display: flex;
+  display: none;
+  visibility: hidden;
   align-items: center;
   justify-content: center;
   padding: clamp(1rem, 3vw, 2.5rem);
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--transition-smooth);
+  transition: opacity var(--transition-smooth), visibility var(--transition-smooth);
 }
 
 .modal-backdrop.active {
-  opacity: 1;
-  pointer-events: auto;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 
 .modal-dialog {
@@ -4934,19 +4951,38 @@ a {
    Responsive Media Queries
    -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
+  .hero-ambient-glow-secondary {
+    display: none !important;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 2.75rem;
+    gap: 2.25rem;
+    width: 100%;
+  }
+
+  .hero-media {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
   }
 
   .hero-photo-card {
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-photo-inner {
+    min-height: 360px !important;
+    max-height: 500px !important;
   }
 
   .work-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem 0.85rem !important;
   }
 
   .subscribers-metrics-grid {
@@ -4981,12 +5017,94 @@ a {
 }
 
 @media (max-width: 640px) {
+  .container {
+    padding-left: clamp(1rem, 4vw, 1.25rem) !important;
+    padding-right: clamp(1rem, 4vw, 1.25rem) !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+
+  /* Mobile Header */
+  .site-header {
+    padding-top: 1.25rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .header-inner {
+    gap: 0.4rem !important;
+  }
+
+  .signature-logo {
+    font-size: 1.85rem !important;
+  }
+
+  .header-actions {
+    gap: 0.45rem !important;
+  }
+
+  .btn-pill-header-whatsapp {
+    padding: 0.42rem 0.75rem !important;
+    font-size: 0.8rem !important;
+    gap: 0.35rem !important;
+  }
+
+  .header-actions #headerContactBtn {
+    padding: 0.42rem 0.8rem !important;
+    font-size: 0.8rem !important;
+    gap: 0.35rem !important;
+  }
+
+  /* Mobile Hero */
   .hero-title {
-    font-size: 2.15rem;
+    font-size: clamp(2.1rem, 8.5vw, 2.65rem) !important;
+    line-height: 1.12 !important;
+    margin-bottom: 1.15rem !important;
+    word-break: break-word !important;
+  }
+
+  .hero-bio {
+    font-size: 0.98rem !important;
+    line-height: 1.62 !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .hero-cta-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.65rem !important;
+    margin-bottom: 1.85rem !important;
+  }
+
+  .hero-cta-group .btn-pill-dark,
+  .hero-cta-group .btn-pill-whatsapp,
+  .hero-cta-group .btn-pill-ghost {
+    font-size: 0.84rem !important;
+    padding: 0.55rem 1rem !important;
   }
 
   .hero-photo-card {
-    max-width: 100%;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .hero-photo-inner {
+    min-height: 320px !important;
+    max-height: 440px !important;
+  }
+
+  .hero-photo-badge {
+    left: 10px !important;
+    bottom: 10px !important;
+    right: 10px !important;
+    padding: 0.65rem 0.85rem !important;
+  }
+
+  .hero-badge-title {
+    font-size: 0.85rem !important;
+  }
+
+  .hero-badge-subtitle {
+    font-size: 0.72rem !important;
   }
 
   .subscribers-title {
@@ -5011,15 +5129,107 @@ a {
   }
 
   .work-filters {
-    width: 100%;
-    overflow-x: auto;
-    padding: 0.25rem;
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 0.35rem !important;
+  }
+
+  .work-filters::-webkit-scrollbar {
+    display: none !important;
   }
 
   .filter-btn {
-    padding: 0.35rem 0.75rem;
-    font-size: 0.8rem;
-    white-space: nowrap;
+    flex-shrink: 0 !important;
+    padding: 0.4rem 0.85rem !important;
+    font-size: 0.8rem !important;
+    white-space: nowrap !important;
+  }
+
+  /* Mobile 2-Column Work Grid & Video Cards (2 in one row on mobile) */
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem 0.65rem !important;
+  }
+
+  .project-card {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .project-media-wrap {
+    border-radius: 8px !important;
+  }
+
+  .project-card-title {
+    font-size: 0.88rem !important;
+    line-height: 1.25 !important;
+    margin-top: 0.45rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  .video-play-center-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .video-play-center-btn svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  /* Multi-video inner layouts for 2-column mobile display */
+  .short-form-trio-grid {
+    padding: 2px !important;
+    gap: 3px !important;
+  }
+
+  .short-phone-frame {
+    border-radius: 5px !important;
+    border-width: 1px !important;
+  }
+
+  .short-reel-badge,
+  .real-state-badge,
+  .format-pill {
+    font-size: 0.45rem !important;
+    padding: 0.1rem 0.25rem !important;
+  }
+
+  .dual-col-top-badge,
+  .format-badge-wrap {
+    top: 4px !important;
+    left: 4px !important;
+  }
+
+  .dual-play-text,
+  .format-play-label {
+    display: none !important;
+  }
+
+  .dual-play-btn-circle,
+  .format-play-circle {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .dual-play-btn-circle svg,
+  .format-play-circle svg {
+    width: 9px !important;
+    height: 9px !important;
+  }
+
+  .dual-video-divider {
+    width: 12px !important;
+  }
+
+  .dual-divider-tag {
+    font-size: 0.36rem !important;
+    padding: 1px 2px !important;
   }
 
   .modal-meta-grid {
@@ -5042,6 +5252,30 @@ a {
   .btn-email-copy,
   .btn-calendar-link {
     justify-content: center;
+  }
+
+  /* Mobile Footer */
+  .site-footer-bottom {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1.25rem !important;
+  }
+
+  .footer-brand {
+    flex-direction: column !important;
+    gap: 0.4rem !important;
+    text-align: center !important;
+  }
+
+  .footer-social-links {
+    justify-content: center !important;
+    gap: 0.65rem 1rem !important;
+    width: 100% !important;
+  }
+
+  .social-link {
+    font-size: 0.82rem !important;
   }
 }
 
